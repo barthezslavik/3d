@@ -71,16 +71,16 @@ function init()
   h.position.set(0, 0, 0);
   scene.add(h);
 
-  var oGeometry = new THREE.SphereGeometry( 1.1, 50, 50 );
+  var oGeometry = new THREE.SphereGeometry( 0.9, 50, 50 );
   var oMaterial = new THREE.MeshLambertMaterial( {color: 0xffffff} );
   var o = new THREE.Mesh(oGeometry, oMaterial);
   o.position.set(1, 1, 0);
   scene.add(o);
 
-  var oGeometry = new THREE.SphereGeometry( 1.1, 50, 50 );
+  var oGeometry = new THREE.SphereGeometry( 0.9, 50, 50 );
   var oMaterial = new THREE.MeshLambertMaterial( {color: 0xffffff} );
   var o = new THREE.Mesh(oGeometry, oMaterial);
-  o.position.set(-1, 0, 0);
+  o.position.set(-1, 1, 0);
   scene.add(o);
 
 
