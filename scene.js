@@ -74,29 +74,17 @@ function init()
     this.angle = angle
     this.distance = distance
     this.coords = coords
-    var molecule = [20, 30, 40];
+    var molecule = [80, 70, 40];
     molecule.forEach(function(entry) {
       var geometry = new THREE.SphereGeometry( 20, 32, 16 );
       var material = new THREE.MeshLambertMaterial( { color: 0xff0000 } );
-      var oxygen = new THREE.Mesh(geometry, material);
-      oxygen.position.set(0, 70, 0);
-      scene.add(oxygen);
+      var object = new THREE.Mesh(geometry, material);
+      object.position.set(0, entry, 0);
+      scene.add(object);
     });
   };
 
   var water = new Object.build("H-O-H", 104.45, 0.9584, [0,70,0])
-
-  //var oxygen_geometry = new THREE.SphereGeometry( 20, 32, 16 );
-  //var oxygen_material = new THREE.MeshLambertMaterial( { color: 0xff0000 } );
-  //var oxygen = new THREE.Mesh(oxygen_geometry, oxygen_material);
-  //oxygen.position.set(0, 70, 0);
-  //scene.add(oxygen);
-
-  //var hydrogen_material = new THREE.MeshLambertMaterial( { color: 0xffffff } );
-  //var hydrogen_geometry = new THREE.SphereGeometry( 15, 32, 16 );
-  //var hydrogen = new THREE.Mesh(hydrogen_geometry, hydrogen_material);
-  //hydrogen.position.set(10, 30, 0);
-  //scene.add(hydrogen);
 }
 
 function animate()
