@@ -43,14 +43,8 @@ function init()
   container.appendChild( stats.domElement );
 
   // LIGHT
-  var light = new THREE.PointLight(0xffffff);
-  light.position.set(0,0,100);
-  scene.add(light);
-  var light = new THREE.PointLight(0xffffff);
-  light.position.set(0,0,-100);
-  scene.add(light);
-  var light = new THREE.PointLight(0xffffff);
-  light.position.set(0,1000,0);
+  var light = new THREE.PointLight(0xFFFFCC);
+  light.position.set(0,0,2100);
   scene.add(light);
 
   // FLOOR
