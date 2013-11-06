@@ -8,7 +8,6 @@ animate();
 
 function init()
 {
-
   // SCENE
   scene = new THREE.Scene();
 
@@ -69,22 +68,26 @@ function init()
   // CUSTOM //
   ////////////
 
-  Object.build = function (formula, angle, distance, coords) {
-    this.formula = formula
-    this.angle = angle
-    this.distance = distance
-    this.coords = coords
-    var molecule = [80, 70, 40];
-    molecule.forEach(function(entry) {
-      var geometry = new THREE.SphereGeometry( 20, 32, 16 );
-      var material = new THREE.MeshLambertMaterial( { color: 0xff0000 } );
+  (function render(data) {
+    data =  [{ geometry: "Sphere", details: [20,32,16], color: 0xffffff, position: [0,100,0] },
+             { geometry: "Sphere", details: [20,32,16], color: 0xff0000, position: [50,150,0] },
+             { geometry: "Sphere", details: [20,32,16], color: 0xff0000, position: [100,100,0] }]
+
+    $(data).each(function(index, item) {
+      var geometry = new THREE.SphereGeometry( item.details[0], item.details[1], item.details[2] );
+      var material = new THREE.MeshLambertMaterial( { color: item.color } );
       var object = new THREE.Mesh(geometry, material);
-      object.position.set(0, entry, 0);
+      object.position.set(item.position[0], item.position[1], item.position[2]);
       scene.add(object);
     });
-  };
 
-  var water = new Object.build("H-O-H", 104.45, 0.9584, [0,70,0])
+  })();
+
+  var geometry = new THREE.CylinderGeometry(100, 100, 400, 50, 50, false);
+  var material =  new THREE.MeshNormalMaterial();
+  var cylinder = new THREE.Mesh(geometry, material);
+  cylinder.overdraw = true;
+  //scene.add(cylinder);
 }
 
 function animate()
