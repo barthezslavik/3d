@@ -94,8 +94,11 @@ function init()
     { cylinder: [10,10,15,20,20, false], color: 0x33CCFF, position: [-57,31,-10], rotation: [-0.9, 0, 0]},
     { cylinder: [10,10,15,20,20, false], color: 0xFF794D, position: [-57,23,-20], rotation: [-0.9, 0, 0]},
     { sphere:   [20,32,16], color: 0xFF794D, position: [-57, 10, -35] },
-
-    { sphere:   [20,32,16], color: 0x66FF33, position: [50, 0, 0] },
+    { cylinder: [4,4,15,20,20, false], color: 0x33CCFF, position: [15,30,-5], rotation: [0, 0, 5.4977]},
+    { cylinder: [4,4,15,20,20, false], color: 0x33CCFF, position: [15,30,5], rotation: [0, 0, 5.4977]},
+    { cylinder: [4,4,15,20,20, false], color: 0x66FF33, position: [25,20,-5], rotation: [0, 0, 5.4977]},
+    { cylinder: [4,4,15,20,20, false], color: 0x66FF33, position: [25,20,5], rotation: [0, 0, 5.4977]},
+    { sphere:   [20,32,16], color: 0x66FF33, position: [40, 5, 0] },
     ]
 
     $(data).each(function(index, item) {
