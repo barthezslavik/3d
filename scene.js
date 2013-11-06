@@ -44,7 +44,13 @@ function init()
 
   // LIGHT
   var light = new THREE.PointLight(0xffffff);
-  light.position.set(100,250,100);
+  light.position.set(0,0,100);
+  scene.add(light);
+  var light = new THREE.PointLight(0xffffff);
+  light.position.set(0,0,-100);
+  scene.add(light);
+  var light = new THREE.PointLight(0xffffff);
+  light.position.set(0,1000,0);
   scene.add(light);
 
   // FLOOR
@@ -70,15 +76,16 @@ function init()
 
   (function render(data) {
     data =  [
-  { geometry: "Sphere", options: [20,32,16], color: 0xFF794D, position: [-120, 50, 0] },
-    { geometry: "Cylinder", options: [10, 10, 20, 20, 20, false], color: 0xFF794D, position: [-110,60,0], rotation: Math.PI/6 },
-
-    { geometry: "Sphere", options: [20,32,16], color: 0x66FF33, position: [-85, 100, 0] },
+    { geometry: "Sphere", options: [20,32,16], color: 0xFF794D, position: [-135, 46, 0] },
+    { geometry: "Cylinder", options: [10, 10, 15, 20, 20, false], color: 0xFF794D, position: [-120,60,0], rotation: 0.7853 },
+    { geometry: "Cylinder", options: [10, 10, 15, 20, 20, false], color: 0x66FF33, position: [-80,70,0], rotation: 5.4977 },
+    { geometry: "Sphere", options: [20,32,16], color: 0x66FF33, position: [-95, 85, 0] },
+    { geometry: "Cylinder", options: [10, 10, 15, 20, 20, false], color: 0x66FF33, position: [-110,70,0], rotation: 0.7853 },
+    { geometry: "Cylinder", options: [10, 10, 15, 20, 20, false], color: 0x33CCFF, position: [-70,60,0], rotation: 5.4977 },
     { geometry: "Sphere", options: [20,32,16], color: 0x33CCFF, position: [-50, 50, 0] },
-
+    { geometry: "Cylinder", options: [10, 10, 30, 20, 20, false], color: 0x33CCFF, position: [-20,50,0], rotation: 1.5707 },
     { geometry: "Sphere", options: [20,32,16], color: 0xFF794D, position: [-70, 0, -50] },
     { geometry: "Sphere", options: [20,32,16], color: 0xFF794D, position: [-70, 0, 50] },
-
     { geometry: "Sphere", options: [20,32,16], color: 0x33CCFF, position: [10, 50, 0] },
     { geometry: "Sphere", options: [20,32,16], color: 0xFF794D, position: [50, 100, 0] },
     { geometry: "Sphere", options: [20,32,16], color: 0x66FF33, position: [50, 0, 0] },
