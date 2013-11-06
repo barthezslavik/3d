@@ -76,40 +76,49 @@ function init()
 
   (function render(data) {
     data =  [
-    { geometry: "Sphere", options: [20,32,16], color: 0xFF794D, position: [-135, 46, 0] },
-    { geometry: "Cylinder", options: [10, 10, 15, 20, 20, false], color: 0xFF794D, position: [-120,60,0], rotation: 0.7853 },
-    { geometry: "Cylinder", options: [10, 10, 15, 20, 20, false], color: 0x66FF33, position: [-80,70,0], rotation: 5.4977 },
-    { geometry: "Sphere", options: [20,32,16], color: 0x66FF33, position: [-95, 85, 0] },
-    { geometry: "Cylinder", options: [10, 10, 15, 20, 20, false], color: 0x66FF33, position: [-110,70,0], rotation: 0.7853 },
-    { geometry: "Cylinder", options: [10, 10, 15, 20, 20, false], color: 0x33CCFF, position: [-70,60,0], rotation: 5.4977 },
-    { geometry: "Sphere", options: [20,32,16], color: 0x33CCFF, position: [-55, 45, 0] },
-    { geometry: "Cylinder", options: [10, 10, 30, 20, 20, false], color: 0x33CCFF, position: [-30,45,0], rotation: 1.5707 },
-    { geometry: "Sphere", options: [20,32,16], color: 0x33CCFF, position: [0, 45, 0] },
-    
-    { geometry: "Sphere", options: [20,32,16], color: 0xFF794D, position: [-70, 0, -50] },
-    { geometry: "Sphere", options: [20,32,16], color: 0xFF794D, position: [-70, 0, 50] },
-    { geometry: "Sphere", options: [20,32,16], color: 0xFF794D, position: [50, 100, 0] },
-    { geometry: "Sphere", options: [20,32,16], color: 0x66FF33, position: [50, 0, 0] },
+    { sphere:   [20,32,16], color: 0xFF794D, position: [-135, 46, 0] },
+    { cylinder: [10,10,15,20,20,false], color: 0xFF794D, position: [-120,60,0], rotation: [0,0,0.7853] },
+    { cylinder: [10,10,15,20,20,false], color: 0x66FF33, position: [-80,70,0], rotation: [0,0,5.4977] },
+    { sphere:   [20,32,16], color: 0x66FF33, position: [-95, 85, 0] },
+    { cylinder: [10,10,15,20,20,false], color: 0x66FF33, position: [-110,70,0], rotation: [0,0,0.7853] },
+    { cylinder: [10,10,15,20,20,false], color: 0x33CCFF, position: [-70,60,0], rotation: [0,0,5.4977] },
+    { sphere:   [20,32,16], color: 0x33CCFF, position: [-55, 45, 0] },
+    { cylinder: [10,10,30,20,20, false], color: 0x33CCFF, position: [-30,45,0], rotation: [0,0,1.5707] },
+    { sphere:   [20,32,16], color: 0x33CCFF, position: [0, 45, 0] },
+    { cylinder: [10,10,15,20,20, false], color: 0x33CCFF, position: [15,60,0], rotation: [0, 0, 0.7853] },
+    { cylinder: [10,10,15,20,20, false], color: 0xFF794D, position: [25,70,0], rotation: [0, 0, 0.7853] },
+    { sphere:   [20,32,16], color: 0xFF794D, position: [39, 85, 0] },
+    { cylinder: [10,10,15,20,20, false], color: 0x33CCFF, position: [-57,31,10], rotation: [0.9, 0, 0]},
+    { cylinder: [10,10,15,20,20, false], color: 0xFF794D, position: [-57,23,20], rotation: [0.9, 0, 0]},
+    { sphere:   [20,32,16], color: 0xFF794D, position: [-57, 10, 35] },
+    { cylinder: [10,10,15,20,20, false], color: 0x33CCFF, position: [-57,31,-10], rotation: [-0.9, 0, 0]},
+    { cylinder: [10,10,15,20,20, false], color: 0xFF794D, position: [-57,23,-20], rotation: [-0.9, 0, 0]},
+    { sphere:   [20,32,16], color: 0xFF794D, position: [-57, 10, -35] },
+
+    { sphere:   [20,32,16], color: 0x66FF33, position: [50, 0, 0] },
     ]
 
     $(data).each(function(index, item) {
-      var o = item.options;
       var p = item.position;
       var c = item.color;
 
-      if (item.geometry == "Sphere") {
-        var geometry = new THREE.SphereGeometry( o[0], o[1], o[2] );
-        var material = new THREE.MeshLambertMaterial( { color: c } );
+      if (item.sphere) {
+        var s = item.sphere
+        var geometry = new THREE.SphereGeometry( s[0], s[1], s[2] );
+        var material = new THREE.MeshPhongMaterial( { color: c } );
         var object = new THREE.Mesh(geometry, material);
         object.position.set(p[0], p[1], p[2]);
       }
 
-      if (item.geometry == "Cylinder") {
-        var geometry = new THREE.CylinderGeometry(o[0], o[1], o[2], o[3], o[4], o[5]);
+      if (item.cylinder) {
+        var n = item.cylinder;
+        var geometry = new THREE.CylinderGeometry(n[0], n[1], n[2], n[3], n[4], n[5]);
         var material = new THREE.MeshLambertMaterial( { color: c } );
         var object = new THREE.Mesh(geometry, material);
         object.position.set(p[0], p[1], p[2]);
-        object.rotation.z -= item.rotation
+        if (item.rotation[0] != 0) object.rotation.x -= item.rotation[0]
+        if (item.rotation[1] != 0) object.rotation.y -= item.rotation[1]
+        if (item.rotation[2] != 0) object.rotation.z -= item.rotation[2]
       }
 
       scene.add(object);
