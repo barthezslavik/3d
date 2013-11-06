@@ -69,24 +69,43 @@ function init()
   ////////////
 
   (function render(data) {
-    data =  [{ geometry: "Sphere", details: [20,32,16], color: 0xffffff, position: [0,100,0] },
-             { geometry: "Sphere", details: [20,32,16], color: 0xff0000, position: [50,150,0] },
-             { geometry: "Sphere", details: [20,32,16], color: 0xff0000, position: [100,100,0] }]
+    data =  [
+      { geometry: "Sphere", options: [20,32,16], color: 0xFF794D, position: [-120, 50, 0] },
+      { geometry: "Sphere", options: [20,32,16], color: 0x66FF33, position: [-85, 100, 0] },
+      { geometry: "Sphere", options: [20,32,16], color: 0x33CCFF, position: [-50, 50, 0] },
+
+      { geometry: "Sphere", options: [20,32,16], color: 0xFF794D, position: [-50, 0, -50] },
+      { geometry: "Sphere", options: [20,32,16], color: 0xFF794D, position: [-50, 0, 50] },
+
+      { geometry: "Sphere", options: [20,32,16], color: 0x33CCFF, position: [10, 50, 0] },
+      { geometry: "Sphere", options: [20,32,16], color: 0xFF794D, position: [50, 100, 0] },
+      { geometry: "Sphere", options: [20,32,16], color: 0x66FF33, position: [50, 0, 0] },
+
+      { geometry: "Cylinder", options: [10, 10, 10, 50, 50, false], color: 0xFF794D, position: [150,150,0] },
+    ]
 
     $(data).each(function(index, item) {
-      var geometry = new THREE.SphereGeometry( item.details[0], item.details[1], item.details[2] );
-      var material = new THREE.MeshLambertMaterial( { color: item.color } );
+      var o = item.options;
+      var p = item.position;
+      var c = item.color;
+
+      if (item.geometry == "Sphere") {
+        var geometry = new THREE.SphereGeometry( o[0], o[1], o[2] );
+      } else {
+        var geometry = new THREE.CylinderGeometry(o[0], o[1], o[2], o[3], o[4], o[5]);
+      }
+
+      var material = new THREE.MeshLambertMaterial( { color: c } );
       var object = new THREE.Mesh(geometry, material);
-      object.position.set(item.position[0], item.position[1], item.position[2]);
+      object.position.set(p[0], p[1], p[2]);
       scene.add(object);
     });
 
   })();
 
-  var geometry = new THREE.CylinderGeometry(100, 100, 400, 50, 50, false);
-  var material =  new THREE.MeshNormalMaterial();
-  var cylinder = new THREE.Mesh(geometry, material);
-  cylinder.overdraw = true;
+  ///var material =  new THREE.MeshNormalMaterial();
+  //var cylinder = new THREE.Mesh(geometry, material);
+  //cylinder.overdraw = true;
   //scene.add(cylinder);
 }
 
