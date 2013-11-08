@@ -79,16 +79,12 @@ function animate()
 
 function update()
 {
-  var delta = clock.getDelta();
-  if ( keyboard.pressed("1") )
-    document.getElementById('message').innerHTML = ' Have a nice day! - 1';
-  if ( keyboard.pressed("2") )
-    document.getElementById('message').innerHTML = ' Have a nice day! - 2 ';
   controls.update();
   stats.update();
 }
 
 function render()
 {
+  //window.glycolaldehyde[0]["h"][0] = 1000;
   renderer.render( scene, camera );
 }
