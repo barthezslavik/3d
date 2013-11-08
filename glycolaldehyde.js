@@ -1,6 +1,6 @@
 (function render() {
 
-   window.glycolaldehyde = [
+   glycolaldehyde = [
       { h: [-70, 46, 20 ] },
       { o: [-50, 70, 20 ] },
       { c: [-30, 45, 20 ] },
@@ -11,7 +11,7 @@
       { h: [ 20, 70, 20 ] },
     ]
 
-    $(window.glycolaldehyde).each(function(index, item) {
+    $(glycolaldehyde).each(function(index, item) {
       p = Object.keys(item)[0];
       if (p == "h") color = 0xff5533;
       if (p == "o") color = 0x0099ff;
