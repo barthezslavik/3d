@@ -22,29 +22,29 @@ atom = function(item) {
   scene.add(object);
 }
 
-lights = function(lights) {
-  $(lights).each(function(index, item) {
-    var light = new THREE.PointLight(0xFFFFCC);
-    light.position.set(item[0],item[1],item[2]);
-    scene.add(light);
-  });
-}
-
 force = function() {
   var c = scene.children[3]
   var h = scene.children[4]
 
-  get_distance([c.position["x"], c.position["y"], c.position["z"]], [h.position["x"], h.position["y"], h.position["z"]]);
+  //get_distance([c.position["x"], c.position["y"], c.position["z"]], [h.position["x"], h.position["y"], h.position["z"]]);
 
-  c.translateZ(0.3);
-  c.translateY(0.2);
-  h.translateX(0.1);
+  var mass_x = 140
+  var mass_y = 120
+  var mass_z = 30
+
+  var xv = (mass_x-c.position["x"])/100;
+  var yv = (mass_y-c.position["y"])/100;
+  var zv = (mass_z-c.position["z"])/100;
+
+  if(c.position["x"] < mass_x) { c.translateX(xv); }
+  if(c.position["y"] < mass_y) { c.translateY(xv); }
+  if(c.position["z"] < mass_z) { c.translateZ(xv); }
 }
 
-lights([[-1000,0,0],[1000,0,0],[0,-1000,0],[0,1000,0],[0,0,-1000],[0,0,1000]]);
+var mass_map = [100,100,100,100]
 
 Molecule = function (formula) {
-  var x = 0; var y = 20; var z = 0
+  var x = -100; var y = 20; var z = 0
   var data = [[x+20, y+20, z, "c"], [x, y, z+25, "h"], [x, y, z-25, "h"]]
 
   get_distance([x+20, y+20, z, "c"], [x, y, z+25, "h"])
