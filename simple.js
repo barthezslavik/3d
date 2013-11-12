@@ -22,16 +22,29 @@ atom = function(item) {
   scene.add(object);
 }
 
-force = function() {
-  var c = scene.children[3]
-  var h = scene.children[3]
-  c.translateZ(1);
-  c.translateY(1);
-  h.translateZ(1);
+lights = function(lights) {
+  $(lights).each(function(index, item) {
+    var light = new THREE.PointLight(0xFFFFCC);
+    light.position.set(item[0],item[1],item[2]);
+    scene.add(light);
+  });
 }
 
+force = function() {
+  var c = scene.children[3]
+  var h = scene.children[4]
+
+  get_distance([c.position["x"], c.position["y"], c.position["z"]], [h.position["x"], h.position["y"], h.position["z"]]);
+
+  c.translateZ(0.3);
+  c.translateY(0.2);
+  h.translateX(0.1);
+}
+
+lights([[-1000,0,0],[1000,0,0],[0,-1000,0],[0,1000,0],[0,0,-1000],[0,0,1000]]);
+
 Molecule = function (formula) {
-  var x = 0; var y = 0; var z = 0
+  var x = 0; var y = 20; var z = 0
   var data = [[x+20, y+20, z, "c"], [x, y, z+25, "h"], [x, y, z-25, "h"]]
 
   get_distance([x+20, y+20, z, "c"], [x, y, z+25, "h"])
