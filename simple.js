@@ -4,11 +4,6 @@
 //  console.log("CH2");
 //}
 
-get_distance = function(p, q) {
-  result = Math.sqrt(Math.pow((q[0] - p[0]), 2) + Math.pow((q[1] - p[1]), 2) + Math.pow((q[2] - p[2]), 2));
-  console.log(result);
-}
-
 atom = function(item) {
   if (item[3] == "h") { color = 0xff5533; radius = 120 }
   if (item[3] == "o") { color = 0x0099ff; radius = 155 }
@@ -23,27 +18,22 @@ atom = function(item) {
 }
 
 force = function() {
-  var c = scene.children[3]
-  var h = scene.children[4]
-
-  //get_distance([c.position["x"], c.position["y"], c.position["z"]], [h.position["x"], h.position["y"], h.position["z"]]);
+  var particles = [scene.children[3], scene.children[4]]
 
   var mass_x = 140
   var mass_y = 120
   var mass_z = 30
 
-  if(c.position["x"] < mass_x) { c.translateX((mass_x-c.position["x"])/100); }
-  if(c.position["y"] < mass_y) { c.translateY((mass_y-c.position["y"])/100); }
-  if(c.position["z"] < mass_z) { c.translateZ((mass_z-c.position["z"])/100); }
+  $(particles).each(function(index, item) {
+    if(item.position["x"] < mass_x) { item.translateX((mass_x-item.position["x"])/100); }
+    if(item.position["y"] < mass_y) { item.translateY((mass_y-item.position["y"])/100); }
+    if(item.position["z"] < mass_z) { item.translateZ((mass_z-item.position["z"])/100); }
+  });
 }
-
-var mass_map = [100,100,100,100]
 
 Molecule = function (formula) {
   var x = -100; var y = 20; var z = 0
   var data = [[x+20, y+20, z, "c"], [x, y, z+25, "h"], [x, y, z-25, "h"]]
-
-  get_distance([x+20, y+20, z, "c"], [x, y, z+25, "h"])
 
   atom(data[0])
   atom(data[1])
