@@ -32,13 +32,9 @@ force = function() {
   var mass_y = 120
   var mass_z = 30
 
-  var xv = (mass_x-c.position["x"])/100;
-  var yv = (mass_y-c.position["y"])/100;
-  var zv = (mass_z-c.position["z"])/100;
-
-  if(c.position["x"] < mass_x) { c.translateX(xv); }
-  if(c.position["y"] < mass_y) { c.translateY(xv); }
-  if(c.position["z"] < mass_z) { c.translateZ(xv); }
+  if(c.position["x"] < mass_x) { c.translateX((mass_x-c.position["x"])/100); }
+  if(c.position["y"] < mass_y) { c.translateY((mass_y-c.position["y"])/100); }
+  if(c.position["z"] < mass_z) { c.translateZ((mass_z-c.position["z"])/100); }
 }
 
 var mass_map = [100,100,100,100]
