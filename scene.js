@@ -73,6 +73,7 @@ function init()
 function animate()
 {
   requestAnimationFrame( animate );
+  force();
   render();
   update();
 }
@@ -85,6 +86,5 @@ function update()
 
 function render()
 {
-  //window.glycolaldehyde[0]["h"][0] = 1000;
   renderer.render( scene, camera );
 }
