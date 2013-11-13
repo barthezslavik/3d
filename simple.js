@@ -29,7 +29,7 @@ force = function() {
   var delta_x = 0;
   var delta_y = 0;
   var delta_z = 0;
-  var speed = 200;
+  var speed = 90;
 
   $(masses).each(function(index, item) {
     delta_x += item[0];
@@ -47,13 +47,17 @@ force = function() {
     if(item.position["z"] != item[2]) { item.translateZ((delta_z-item.position["z"])/speed); }
   });
 
-  particles[0].translateZ("3");
+  if (particles[0].position["z"] < 0) {
+    particles[0].translateZ("6");
+  } else {
+    particles[0].translateX("2");
+  }
 
 }
 
-atom([50,50,-1700,"c"]);
-atom([-150,50,50,"h"]);
-atom([-50,50,170,"o"]);
+atom([-150,50,-1700,"c"]);
+atom([-1500,50,50,"h"]);
+atom([200,50,170,"o"]);
 
 /*
 Molecule = function (formula) {
