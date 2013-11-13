@@ -18,17 +18,28 @@ atom = function(item) {
 }
 
 force = function() {
-  var particles = [scene.children[3], scene.children[4]]
+  var particles = [scene.children[3]];
+  var masses = [[100,0,0],[0,100,0],[0,0,100]];
+  var delta_x = 0;
+  var delta_y = 0;
+  var delta_z = 0;
 
-  var mass_x = 140
-  var mass_y = 120
-  var mass_z = 30
+  $(masses).each(function(index, item) {
+    delta_x += item[0];
+    delta_y += item[1];
+    delta_z += item[2];
+  });
+
+  delta_x = delta_x/masses.length;
+  delta_y = delta_y/masses.length;
+  delta_z = delta_z/masses.length;
 
   $(particles).each(function(index, item) {
-    if(item.position["x"] < mass_x) { item.translateX((mass_x-item.position["x"])/100); }
-    if(item.position["y"] < mass_y) { item.translateY((mass_y-item.position["y"])/100); }
-    if(item.position["z"] < mass_z) { item.translateZ((mass_z-item.position["z"])/100); }
+    if(item.position["x"] < delta_x) { item.translateX((delta_x-item.position["x"])/50); }
+    if(item.position["y"] < delta_y) { item.translateY((delta_y-item.position["y"])/50); }
+    if(item.position["z"] < delta_z) { item.translateZ((delta_z-item.position["z"])/50); }
   });
+
 }
 
 Molecule = function (formula) {
