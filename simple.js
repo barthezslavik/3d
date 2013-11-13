@@ -22,8 +22,8 @@ force = function() {
   var particles = children.slice(3);
   var masses = [
     [particles[0].position["x"],particles[0].position["y"],particles[0].position["z"]],
-    [particles[1].position["x"],particles[1].position["y"],particles[1].position["z"]],
-    [particles[2].position["x"],particles[2].position["y"],particles[2].position["z"]],
+    //[particles[1].position["x"],particles[1].position["y"],particles[1].position["z"]],
+    //[particles[2].position["x"],particles[2].position["y"],particles[2].position["z"]],
   ];
 
   var delta_x = 0;
@@ -46,6 +46,8 @@ force = function() {
     if(item.position["y"] != item[1]) { item.translateY((delta_y-item.position["y"])/speed); }
     if(item.position["z"] != item[2]) { item.translateZ((delta_z-item.position["z"])/speed); }
   });
+
+  particles[0].translateZ("3");
 
 }
 
