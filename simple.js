@@ -18,11 +18,13 @@ atom = function(item) {
 }
 
 force = function() {
-  var particles = [scene.children[3]];
+  var children = scene.children;
+  var particles = children.slice(3);
   var masses = [[100,0,0],[0,100,0],[0,0,100]];
   var delta_x = 0;
   var delta_y = 0;
   var delta_z = 0;
+  var speed = 5;
 
   $(masses).each(function(index, item) {
     delta_x += item[0];
@@ -35,13 +37,18 @@ force = function() {
   delta_z = delta_z/masses.length;
 
   $(particles).each(function(index, item) {
-    if(item.position["x"] < delta_x) { item.translateX((delta_x-item.position["x"])/50); }
-    if(item.position["y"] < delta_y) { item.translateY((delta_y-item.position["y"])/50); }
-    if(item.position["z"] < delta_z) { item.translateZ((delta_z-item.position["z"])/50); }
+    if(item.position["x"] < delta_x) { item.translateX((delta_x-item.position["x"])/speed); }
+    if(item.position["y"] < delta_y) { item.translateY((delta_y-item.position["y"])/speed); }
+    if(item.position["z"] < delta_z) { item.translateZ((delta_z-item.position["z"])/speed); }
   });
 
 }
 
+atom([50,50,50,"c"]);
+atom([-50,50,50,"h"]);
+atom([-50,50,170,"o"]);
+
+/*
 Molecule = function (formula) {
   var x = -100; var y = 20; var z = 0
   var data = [[x+20, y+20, z, "c"], [x, y, z+25, "h"], [x, y, z-25, "h"]]
@@ -51,3 +58,4 @@ Molecule = function (formula) {
 };
 
 m = new Molecule("CH2");
+*/
