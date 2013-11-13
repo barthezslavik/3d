@@ -20,11 +20,8 @@ atom = function(item) {
 force = function() {
   var children = scene.children;
   var particles = children.slice(3);
-  var masses = [
-    [particles[0].position["x"],particles[0].position["y"],particles[0].position["z"]],
-    //[particles[1].position["x"],particles[1].position["y"],particles[1].position["z"]],
-    //[particles[2].position["x"],particles[2].position["y"],particles[2].position["z"]],
-  ];
+  var p = particles[0].position
+  var masses = [[p["x"], p["y"], p["z"]]];
 
   var delta_x = 0;
   var delta_y = 0;
@@ -47,10 +44,13 @@ force = function() {
     if(item.position["z"] != item[2]) { item.translateZ((delta_z-item.position["z"])/speed); }
   });
 
-  if (particles[0].position["z"] < 0) {
+  if (p["z"] < 0) {
     particles[0].translateZ("6");
   } else {
-    particles[0].translateX("2");
+    if (p["x"] > 100) {
+    } else {
+      particles[0].translateX("2");
+    }
   }
 
 }
