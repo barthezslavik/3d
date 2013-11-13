@@ -20,11 +20,16 @@ atom = function(item) {
 force = function() {
   var children = scene.children;
   var particles = children.slice(3);
-  var masses = [[100,0,0],[0,100,0],[0,0,100]];
+  var masses = [
+    [particles[0].position["x"],particles[0].position["y"],particles[0].position["z"]],
+    [particles[1].position["x"],particles[1].position["y"],particles[1].position["z"]],
+    [particles[2].position["x"],particles[2].position["y"],particles[2].position["z"]],
+  ];
+
   var delta_x = 0;
   var delta_y = 0;
   var delta_z = 0;
-  var speed = 5;
+  var speed = 200;
 
   $(masses).each(function(index, item) {
     delta_x += item[0];
@@ -37,15 +42,15 @@ force = function() {
   delta_z = delta_z/masses.length;
 
   $(particles).each(function(index, item) {
-    if(item.position["x"] < delta_x) { item.translateX((delta_x-item.position["x"])/speed); }
-    if(item.position["y"] < delta_y) { item.translateY((delta_y-item.position["y"])/speed); }
-    if(item.position["z"] < delta_z) { item.translateZ((delta_z-item.position["z"])/speed); }
+    if(item.position["x"] != item[0]) { item.translateX((delta_x-item.position["x"])/speed); }
+    if(item.position["y"] != item[1]) { item.translateY((delta_y-item.position["y"])/speed); }
+    if(item.position["z"] != item[2]) { item.translateZ((delta_z-item.position["z"])/speed); }
   });
 
 }
 
-atom([50,50,50,"c"]);
-atom([-50,50,50,"h"]);
+atom([50,50,-1700,"c"]);
+atom([-150,50,50,"h"]);
 atom([-50,50,170,"o"]);
 
 /*
