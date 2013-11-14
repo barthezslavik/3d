@@ -17,6 +17,15 @@ atom = function(item) {
   scene.add(object);
 }
 
+
+distance = function(from, to) {
+  return
+  var x = to.x-from.x;
+  var y = to.y-from.y;
+  var z = to.z-from.z;
+  return Math.sqrt(x*x+y*y+z*z)
+}
+
 force = function() {
   var children = scene.children;
   var particles = children.slice(3);
@@ -28,20 +37,28 @@ force = function() {
   var delta_z = 0;
   var speed = 90;
 
-  $(masses).each(function(index, item) {
-    delta_x += item[0];
-    delta_y += item[1];
-    delta_z += item[2];
+  $(masses).each(function(index, mass) {
+    delta_x += mass[0];
+    delta_y += mass[1];
+    delta_z += mass[2];
   });
 
   delta_x = delta_x/masses.length;
   delta_y = delta_y/masses.length;
   delta_z = delta_z/masses.length;
 
-  $(particles).each(function(index, item) {
-    if(item.position["x"] != item[0]) { item.translateX((delta_x-item.position["x"])/speed); }
-    if(item.position["y"] != item[1]) { item.translateY((delta_y-item.position["y"])/speed); }
-    if(item.position["z"] != item[2]) { item.translateZ((delta_z-item.position["z"])/speed); }
+  $(particles).each(function(index, particle) {
+    if(particle.position["x"] != particle[0]) {
+      //if (distance(particle.position) < 30) {
+        particle.translateX((delta_x-particle.position["x"])/speed);
+      //}
+    }
+    if(particle.position["y"] != particle[1]) {
+      particle.translateY((delta_y-particle.position["y"])/speed);
+    }
+    if(particle.position["z"] != particle[2]) {
+      particle.translateZ((delta_z-particle.position["z"])/speed);
+    }
   });
 
   if (p["z"] < 0) {
