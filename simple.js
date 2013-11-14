@@ -8,7 +8,8 @@ atom = function(vector, element) {
   var object = new THREE.Mesh(geometry, material);
 
   object.position.set(vector.x, vector.y, vector.z);
-  scene.add(object);
+  object.name = element
+  return object;
 }
 
 distance = function(from, to) {
@@ -27,21 +28,23 @@ force = function() {
   var delta_x = 0;
   var delta_y = 0;
   var delta_z = 0;
-  var speed = 0.07;
+  var speed = 22;
 
   delta_x += massive.position["x"];
   delta_y += massive.position["y"];
   delta_z += massive.position["z"];
 
-  $(particles).each(function(index, particle) {
-    if (distance(particle.position, massive.position) > 30) { particle.translateX((delta_x-particle.position["x"])*speed); }
-    if (distance(particle.position, massive.position) > 30) { particle.translateY((delta_y-particle.position["y"])*speed); }
-    if (distance(particle.position, massive.position) > 30) { particle.translateZ((delta_z-particle.position["z"])*speed); }
+  $([particles[1], particles[2]]).each(function(index, particle) {
+    if (distance(particle.position, massive.position) > 30) {
+      particle.translateX((delta_x-particle.position["x"])*speed/100);
+      particle.translateY((delta_y-particle.position["y"])*speed/100);
+      particle.translateZ((delta_z-particle.position["z"])*speed/100);
+    }
   });
 
   if (massive.position["z"] < 10) { massive.translateZ("6"); }
 }
 
-atom(new THREE.Vector3(-150,50,-1700), "c");
-atom(new THREE.Vector3(-1500,50,50), "h");
-atom(new THREE.Vector3(200,50,170), "o");
+scene.add(atom(new THREE.Vector3(-150,50,-1700), "c"));
+scene.add(atom(new THREE.Vector3(-1500,50,50), "h"));
+scene.add(atom(new THREE.Vector3(200,50,170), "o"));
