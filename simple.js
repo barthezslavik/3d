@@ -28,21 +28,33 @@ force = function() {
   var delta_x = 0;
   var delta_y = 0;
   var delta_z = 0;
-  var speed = 22;
+  var speed = 8;
 
   delta_x += massive.position["x"];
   delta_y += massive.position["y"];
   delta_z += massive.position["z"];
 
-  $([particles[1], particles[2]]).each(function(index, particle) {
-    if (distance(particle.position, massive.position) > 30) {
+  $(particles).each(function(index, particle) {
+    if (index == 0) return true;
+    particle.locked = false;
+
+    if (distance(particle.position, massive.position) < 30) {
+      particle.locked = true;
+    }
+
+    if (particle.locked == false) {
       particle.translateX((delta_x-particle.position["x"])*speed/100);
       particle.translateY((delta_y-particle.position["y"])*speed/100);
       particle.translateZ((delta_z-particle.position["z"])*speed/100);
+    } else {
+      particle.position.set(massive.position["x"]+10, massive.position["y"]+10, massive.position["z"]+10);
     }
   });
 
-  if (massive.position["z"] < 10) { massive.translateZ("6"); }
+  if (massive.position["z"] < 10) { massive.translateZ("6");
+  } else {
+    if (massive.position["x"] < 30) { massive.translateX("6"); }
+  }
 }
 
 scene.add(atom(new THREE.Vector3(-150,50,-1700), "c"));
