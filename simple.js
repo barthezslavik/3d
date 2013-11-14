@@ -37,17 +37,17 @@ force = function() {
   $(particles).each(function(index, particle) {
     if (index == 0) return true;
     particle.locked = false;
-
-    if (distance(particle.position, massive.position) < 30) {
-      particle.locked = true;
-    }
-
+    if (distance(particle.position, massive.position) < 60) { particle.locked = true; }
     if (particle.locked == false) {
       particle.translateX((delta_x-particle.position["x"])*speed/100);
       particle.translateY((delta_y-particle.position["y"])*speed/100);
       particle.translateZ((delta_z-particle.position["z"])*speed/100);
     } else {
-      particle.position.set(massive.position["x"]+10, massive.position["y"]+10, massive.position["z"]+10);
+      var x = massive.position["x"];
+      var y = massive.position["y"];
+      var z = massive.position["z"];
+      if (index == 1) { particle.position.set(x-10,y+10,z+10); }
+      if (index == 2) { particle.position.set(x+10,y+10,z+10); }
     }
   });
 
