@@ -22,42 +22,36 @@ distance = function(from, to) {
   var x = to.x-from.x;
   var y = to.y-from.y;
   var z = to.z-from.z;
-  return Math.sqrt(x*x+y*y+z*z)
+  var result = Math.sqrt(x*x+y*y+z*z)
+  return result
 }
 
 force = function() {
   var children = scene.children;
   var particles = children.slice(3);
-  var p = particles[0].position
-  var masses = [[p["x"], p["y"], p["z"]]];
+  var massive = particles[0]
 
   var delta_x = 0;
   var delta_y = 0;
   var delta_z = 0;
   var speed = 90;
 
-  $(masses).each(function(index, mass) {
-    delta_x += mass[0];
-    delta_y += mass[1];
-    delta_z += mass[2];
-  });
-
-  delta_x = delta_x/masses.length;
-  delta_y = delta_y/masses.length;
-  delta_z = delta_z/masses.length;
+  delta_x += massive.position["x"];
+  delta_y += massive.position["y"];
+  delta_z += massive.position["z"];
 
   $(particles).each(function(index, particle) {
-    if (distance(particle.position, masses[0][0]) > 20) { particle.translateX((delta_x-particle.position["x"])/speed); }
-    if (distance(particle.position, masses[0][1]) > 20) { particle.translateY((delta_y-particle.position["y"])/speed); }
-    if (distance(particle.position, masses[0][2]) > 20) { particle.translateZ((delta_z-particle.position["z"])/speed); }
+    if (distance(particle.position, massive.position) > 20) { particle.translateX((delta_x-particle.position["x"])/speed); }
+    if (distance(particle.position, massive.position) > 20) { particle.translateY((delta_y-particle.position["y"])/speed); }
+    if (distance(particle.position, massive.position) > 20) { particle.translateZ((delta_z-particle.position["z"])/speed); }
   });
 
-  if (p["z"] < 0) {
-    particles[0].translateZ("6");
+  if (massive.position["x"] < 0) {
+    massive.translateZ("6");
   } else {
-    if (p["x"] > 100) {
+    if (massive.position["z"] > 100) {
     } else {
-      particles[0].translateX("2");
+      massive.translateX("2");
     }
   }
 
