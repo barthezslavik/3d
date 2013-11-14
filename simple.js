@@ -19,7 +19,6 @@ atom = function(item) {
 
 
 distance = function(from, to) {
-  return
   var x = to.x-from.x;
   var y = to.y-from.y;
   var z = to.z-from.z;
@@ -48,17 +47,9 @@ force = function() {
   delta_z = delta_z/masses.length;
 
   $(particles).each(function(index, particle) {
-    if(particle.position["x"] != particle[0]) {
-      //if (distance(particle.position) < 30) {
-        particle.translateX((delta_x-particle.position["x"])/speed);
-      //}
-    }
-    if(particle.position["y"] != particle[1]) {
-      particle.translateY((delta_y-particle.position["y"])/speed);
-    }
-    if(particle.position["z"] != particle[2]) {
-      particle.translateZ((delta_z-particle.position["z"])/speed);
-    }
+    if (distance(particle.position, masses[0][0]) > 20) { particle.translateX((delta_x-particle.position["x"])/speed); }
+    if (distance(particle.position, masses[0][1]) > 20) { particle.translateY((delta_y-particle.position["y"])/speed); }
+    if (distance(particle.position, masses[0][2]) > 20) { particle.translateZ((delta_z-particle.position["z"])/speed); }
   });
 
   if (p["z"] < 0) {
