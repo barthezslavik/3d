@@ -27,27 +27,19 @@ force = function() {
   var delta_x = 0;
   var delta_y = 0;
   var delta_z = 0;
-  var speed = 90;
+  var speed = 0.07;
 
   delta_x += massive.position["x"];
   delta_y += massive.position["y"];
   delta_z += massive.position["z"];
 
   $(particles).each(function(index, particle) {
-    if (distance(particle.position, massive.position) > 20) { particle.translateX((delta_x-particle.position["x"])/speed); }
-    if (distance(particle.position, massive.position) > 20) { particle.translateY((delta_y-particle.position["y"])/speed); }
-    if (distance(particle.position, massive.position) > 20) { particle.translateZ((delta_z-particle.position["z"])/speed); }
+    if (distance(particle.position, massive.position) > 30) { particle.translateX((delta_x-particle.position["x"])*speed); }
+    if (distance(particle.position, massive.position) > 30) { particle.translateY((delta_y-particle.position["y"])*speed); }
+    if (distance(particle.position, massive.position) > 30) { particle.translateZ((delta_z-particle.position["z"])*speed); }
   });
 
-  if (massive.position["x"] < 0) {
-    massive.translateZ("6");
-  } else {
-    if (massive.position["z"] > 100) {
-    } else {
-      massive.translateX("2");
-    }
-  }
-
+  if (massive.position["z"] < 10) { massive.translateZ("6"); }
 }
 
 atom(new THREE.Vector3(-150,50,-1700), "c");
