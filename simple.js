@@ -1,22 +1,15 @@
-//formula = "СН2(ОН)СНО";
-
-//if (window.formula.search("CH2")) {
-//  console.log("CH2");
-//}
-
-atom = function(item) {
-  if (item[3] == "h") { color = 0xff5533; radius = 120 }
-  if (item[3] == "o") { color = 0x0099ff; radius = 155 }
-  if (item[3] == "c") { color = 0xffdd44; radius = 170 }
+atom = function(vector, element) {
+  if (element == "h") { color = 0xff5533; radius = 120 }
+  if (element == "o") { color = 0x0099ff; radius = 155 }
+  if (element == "c") { color = 0xffdd44; radius = 170 }
 
   var geometry = new THREE.SphereGeometry(radius/10,32,16);
   var material = new THREE.MeshPhongMaterial({ color: color });
   var object = new THREE.Mesh(geometry, material);
 
-  object.position.set(item[0], item[1], item[2]);
+  object.position.set(vector.x, vector.y, vector.z);
   scene.add(object);
 }
-
 
 distance = function(from, to) {
   var x = to.x-from.x;
@@ -57,18 +50,6 @@ force = function() {
 
 }
 
-atom([-150,50,-1700,"c"]);
-atom([-1500,50,50,"h"]);
-atom([200,50,170,"o"]);
-
-/*
-Molecule = function (formula) {
-  var x = -100; var y = 20; var z = 0
-  var data = [[x+20, y+20, z, "c"], [x, y, z+25, "h"], [x, y, z-25, "h"]]
-
-  atom(data[0])
-  atom(data[1])
-};
-
-m = new Molecule("CH2");
-*/
+atom(new THREE.Vector3(-150,50,-1700), "c");
+atom(new THREE.Vector3(-1500,50,50), "h");
+atom(new THREE.Vector3(200,50,170), "o");
