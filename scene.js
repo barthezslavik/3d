@@ -19,6 +19,11 @@ function init()
   camera.position.set(0,150,400);
   camera.lookAt(scene.position);
 
+  if ($.cookie("camera_x")) {
+    camera.lookAt(new THREE.Vector3(0,0,0));
+    camera.position.set($.cookie("camera_x"), $.cookie("camera_y"), $.cookie("camera_z"));
+  }
+
   // RENDERER
   if ( Detector.webgl )
     renderer = new THREE.WebGLRenderer( {antialias:true} );

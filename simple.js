@@ -43,17 +43,24 @@ force = function() {
     }
   });
 
-  if (massive.position["z"] < -100) { massive.translateZ("4"); }
+  if (massive.position["z"] < -100) {
+    massive.translateZ("20");
+  }
 }
 
-var y = Math.floor((Math.random()*100)+1);
+var random_x = Math.floor((Math.random()*1000)+1);
+var random_y = Math.floor((Math.random()*1000)+1);
+var random_z = Math.floor((Math.random()*1000)+1);
 
-function random(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 scene.add(atom(new THREE.Vector3(-150,50,-1700), "c"));
-scene.add(atom(new THREE.Vector3(-1500,y,50), "h"));
+scene.add(atom(new THREE.Vector3(random_x,random_y,random_z), "h"));
 //scene.add(atom(new THREE.Vector3(200,50,170), "o"));
 
-camera.lookAt(new THREE.Vector3(0,0,0));
-camera.position.set(-300,300,500);
+function update_camera(event) {
+  $.cookie("camera_x", camera.position["x"]);
+  $.cookie("camera_y", camera.position["y"]);
+  $.cookie("camera_z", camera.position["z"]);
+}
+
+document.addEventListener('mouseup', update_camera, false);
+
