@@ -12,14 +12,6 @@ atom = function(vector, element) {
   return object;
 }
 
-distance = function(from, to) {
-  var x = to.x-from.x;
-  var y = to.y-from.y;
-  var z = to.z-from.z;
-  var result = Math.sqrt(x*x+y*y+z*z)
-  return result
-}
-
 force = function() {
   var children = scene.children;
   var particles = children.slice(3);
@@ -28,7 +20,7 @@ force = function() {
   var delta_x = 0;
   var delta_y = 0;
   var delta_z = 0;
-  var speed = 8;
+  var speed = 3;
 
   delta_x += massive.position["x"];
   delta_y += massive.position["y"];
@@ -37,7 +29,7 @@ force = function() {
   $(particles).each(function(index, particle) {
     if (index == 0) return true;
     particle.locked = false;
-    if (distance(particle.position, massive.position) < 60) { particle.locked = true; }
+    if (particle.position.distanceTo(massive.position) < 60) { particle.locked = true; }
     if (particle.locked == false) {
       particle.translateX((delta_x-particle.position["x"])*speed/100);
       particle.translateY((delta_y-particle.position["y"])*speed/100);
@@ -51,10 +43,7 @@ force = function() {
     }
   });
 
-  if (massive.position["z"] < 10) { massive.translateZ("48");
-  } else {
-    if (massive.position["x"] < 30) { massive.translateX("6"); }
-  }
+  if (massive.position["z"] < -100) { massive.translateZ("4"); }
 }
 
 var y = Math.floor((Math.random()*100)+1);
