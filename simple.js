@@ -51,12 +51,20 @@ force = function() {
     }
   });
 
-  if (massive.position["z"] < 10) { massive.translateZ("6");
+  if (massive.position["z"] < 10) { massive.translateZ("48");
   } else {
     if (massive.position["x"] < 30) { massive.translateX("6"); }
   }
 }
 
+var y = Math.floor((Math.random()*100)+1);
+
+function random(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 scene.add(atom(new THREE.Vector3(-150,50,-1700), "c"));
-scene.add(atom(new THREE.Vector3(-1500,50,50), "h"));
-scene.add(atom(new THREE.Vector3(200,50,170), "o"));
+scene.add(atom(new THREE.Vector3(-1500,y,50), "h"));
+//scene.add(atom(new THREE.Vector3(200,50,170), "o"));
+
+camera.lookAt(new THREE.Vector3(0,0,0));
+camera.position.set(-300,300,500);
