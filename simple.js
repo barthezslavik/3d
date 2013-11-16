@@ -20,7 +20,7 @@ force = function() {
   var delta_x = 0;
   var delta_y = 0;
   var delta_z = 0;
-  var speed = 3;
+  var speed = 1;
 
   delta_x += massive.position["x"];
   delta_y += massive.position["y"];
@@ -31,9 +31,9 @@ force = function() {
     particle.locked = false;
     if (particle.position.distanceTo(massive.position) < 60) { particle.locked = true; }
     if (particle.locked == false) {
-      particle.translateX((delta_x-particle.position["x"])*speed/100);
-      particle.translateY((delta_y-particle.position["y"])*speed/100);
-      particle.translateZ((delta_z-particle.position["z"])*speed/100);
+      particle.translateX((delta_x-particle.position["x"])/20);
+      particle.translateY((delta_y-particle.position["y"])/20);
+      particle.translateZ((delta_z-particle.position["z"])/20);
     } else {
       var x = massive.position["x"];
       var y = massive.position["y"];
