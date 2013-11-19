@@ -55,12 +55,3 @@ var random_z = Math.floor((Math.random()*1000)+1);
 scene.add(atom(new THREE.Vector3(-150,50,-1700), "c"));
 scene.add(atom(new THREE.Vector3(random_x,random_y,random_z), "h"));
 //scene.add(atom(new THREE.Vector3(200,50,170), "o"));
-
-function update_camera(event) {
-  $.cookie("camera_x", camera.position["x"]);
-  $.cookie("camera_y", camera.position["y"]);
-  $.cookie("camera_z", camera.position["z"]);
-}
-
-document.addEventListener('mouseup', update_camera, false);
-

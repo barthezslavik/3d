@@ -63,6 +63,14 @@ function init()
   floor.rotation.x = Math.PI / 2;
   scene.add(floor);
 
+  function update_camera(event) {
+    $.cookie("camera_x", camera.position["x"]);
+    $.cookie("camera_y", camera.position["y"]);
+    $.cookie("camera_z", camera.position["z"]);
+  }
+
+  document.addEventListener('mouseup', update_camera, false);
+
   ////////////
   // CUSTOM //
   ////////////
@@ -72,7 +80,7 @@ function init()
 function animate()
 {
   requestAnimationFrame( animate );
-  force();
+  //force();
   render();
   update();
 }
