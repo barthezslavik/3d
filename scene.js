@@ -6,8 +6,7 @@ var cube;
 init();
 animate();
 
-function init()
-{
+function init() {
   // SCENE
   scene = new THREE.Scene();
 
@@ -64,9 +63,9 @@ function init()
   scene.add(floor);
 
   function update_camera(event) {
-    $.cookie("camera_x", camera.position["x"]);
-    $.cookie("camera_y", camera.position["y"]);
-    $.cookie("camera_z", camera.position["z"]);
+    $.cookie("camera_x", camera.position.x);
+    $.cookie("camera_y", camera.position.y);
+    $.cookie("camera_z", camera.position.z);
   }
 
   document.addEventListener('mouseup', update_camera, false);
@@ -78,21 +77,19 @@ function init()
 
 }
 
-function animate()
-{
+function animate() {
   requestAnimationFrame( animate );
-  //force();
+  scene.children[3].rotation.y += 0.05;
+  scene.children[4].rotation.y -= 0.08;
   render();
   update();
 }
 
-function update()
-{
+function update() {
   controls.update();
   stats.update();
 }
 
-function render()
-{
+function render() {
   renderer.render( scene, camera );
 }
