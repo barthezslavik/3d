@@ -70,6 +70,7 @@ function init()
   }
 
   document.addEventListener('mouseup', update_camera, false);
+  document.addEventListener('mousewheel', update_camera, false);
 
   ////////////
   // CUSTOM //
