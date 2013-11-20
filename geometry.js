@@ -12,16 +12,11 @@ atom = function(vector, element) {
   return object;
 }
 
-var start_position = new THREE.Vector3( 0, 0, 0 );
+var start_position = new THREE.Vector3( 0, 30, 0 );
 scene.add(atom(start_position, "o"));
-var first_vector = new THREE.Vector3( 0, 0, 0 );
-scene.add( new THREE.ArrowHelper( first_vector.normalize(), new THREE.Vector3( 0, 0, 0 ), 1000, 0x00ff00 ));
-
-//var axis = new THREE.Vector3( 0, 1, 0 );
-//var angle = 104;
-//var matrix = new THREE.Matrix4().makeRotationAxis( axis, angle * ( Math.PI / 180 ));
-//red_vector.applyMatrix4( matrix );
-
-//scene.add(atom(red_vector, "c"));
-
-//scene.add( new THREE.ArrowHelper( red_vector.normalize(), new THREE.Vector3( 0, 50, 0 ), 100, 0xff0000 ));
+var second_position = new THREE.Vector3( -20, 30, 0 );
+scene.add(atom(second_position, "h"));
+var angle = 104;
+var matrix = new THREE.Matrix4().makeRotationAxis( new THREE.Vector3( 0, 1, 0 ), angle * ( Math.PI / 180 ));
+var third_position = second_position.applyMatrix4( matrix );
+scene.add(atom(third_position, "h"));
