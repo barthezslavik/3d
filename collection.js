@@ -64,6 +64,17 @@ ammonia = function(x, y, z) {
   scene.add( molecule );
 }
 
-water(-80,40,0);
-methanum(0,40,0);
-ammonia(80,40,0);
+hydrogen = function(x, y, z) {
+  molecule = new THREE.Object3D();
+  var startPosition = new THREE.Vector3( 0, 0, 0 );
+  molecule.add(atom(startPosition, "h"));
+  var secondPosition = new THREE.Vector3( 0, 18, 0 );
+  molecule.add(atom(secondPosition, "h"));
+  molecule.position.set(x, y, z);
+  scene.add( molecule );
+}
+
+water(-150,40,0);
+methanum(-50,40,0);
+ammonia(50,40,0);
+hydrogen(130,40,0);
