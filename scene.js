@@ -79,8 +79,9 @@ function init() {
 
 function animate() {
   requestAnimationFrame( animate );
-  scene.children[3].rotation.y += 0.05;
-  scene.children[4].rotation.y -= 0.08;
+  //if (scene.children[3]) { scene.children[3].rotation.y += 0.05; }
+  //if (scene.children[4]) { scene.children[4].rotation.y -= 0.08; }
+  //if (scene.children[5]) { scene.children[5].rotation.y -= 0.03; }
   render();
   update();
 }

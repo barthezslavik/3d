@@ -16,13 +16,14 @@ water = function(x, y, z) {
   molecule = new THREE.Object3D();
   var startPosition = new THREE.Vector3( 0, 30, 0 );
   molecule.add(atom(startPosition, "o"));
-  var secondPosition = new THREE.Vector3( 12, 30, 0 );
+  var secondPosition = new THREE.Vector3( -12, 30, 0 );
   molecule.add(atom(secondPosition, "h"));
   var angle = 104.5;
   var matrix = new THREE.Matrix4().makeRotationAxis( new THREE.Vector3( 0, 1, 0 ), angle * ( Math.PI / 180 ));
   var thirdPosition = secondPosition.applyMatrix4( matrix );
   molecule.add(atom(thirdPosition, "h"));
   molecule.position.set(x, y, z);
+  molecule.rotation.set(x, y, z);
   scene.add( molecule );
 }
 
@@ -30,21 +31,19 @@ methanum = function(x, y, z) {
   molecule = new THREE.Object3D();
   var startPosition = new THREE.Vector3( 0, 0, 0 );
   molecule.add(atom(startPosition, "o"));
-  var secondPosition = new THREE.Vector3( 0, 12, 0 );
+  var secondPosition = new THREE.Vector3( -20, 10, 00 );
   molecule.add(atom(secondPosition, "h"));
   var angle = 109.5;
-  var matrix = new THREE.Matrix4().makeRotationAxis( new THREE.Vector3( 1, 0, 0 ), angle * ( Math.PI / 180 ));
-  var thirdPosition = secondPosition.applyMatrix4( matrix );
-  molecule.add(atom(thirdPosition, "h"));
   var matrix = new THREE.Matrix4().makeRotationAxis( new THREE.Vector3( 0, 1, 0 ), angle * ( Math.PI / 180 ));
   var thirdPosition = secondPosition.applyMatrix4( matrix );
   molecule.add(atom(thirdPosition, "h"));
   var fourthPosition = thirdPosition.applyMatrix4( matrix );
-  molecule.add(atom(fourthPosition, "h"));
+  molecule.add(atom(thirdPosition, "h"));
   molecule.position.set(x, y, z);
+  molecule.rotation.set(x, y, z);
   scene.add( molecule );
 }
 
-water(0,0,0);
-water(30,60,0);
+//water(0,0,0);
+//water(30,60,0);
 methanum(-30,60,0);
