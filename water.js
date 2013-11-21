@@ -29,7 +29,7 @@ water = function(x, y, z) {
 methanum = function(x, y, z) {
   molecule = new THREE.Object3D();
   var startPosition = new THREE.Vector3( 0, 0, 0 );
-  molecule.add(atom(startPosition, "o"));
+  molecule.add(atom(startPosition, "c"));
   var secondPosition = new THREE.Vector3( 0, 12, 0 );
   molecule.add(atom(secondPosition, "h"));
   var angle = 109.5;
@@ -47,4 +47,4 @@ methanum = function(x, y, z) {
 
 water(0,0,0);
 water(30,60,0);
-methanum(-30,60,0);
+methanum(-60,60,0);
