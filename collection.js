@@ -14,7 +14,7 @@ atom = function(vector, element) {
   return object;
 }
 
-water = function(x, y, z) {
+h2o = function(x, y, z) {
   molecule = new THREE.Object3D();
   var startPosition = new THREE.Vector3( 0, 0, 0 );
   molecule.add(atom(startPosition, "o"));
@@ -28,7 +28,7 @@ water = function(x, y, z) {
   scene.add( molecule );
 }
 
-methanum = function(x, y, z) {
+ch4 = function(x, y, z) {
   molecule = new THREE.Object3D();
   var startPosition = new THREE.Vector3( 0, 0, 0 );
   molecule.add(atom(startPosition, "c"));
@@ -47,7 +47,7 @@ methanum = function(x, y, z) {
   scene.add( molecule );
 }
 
-ammonia = function(x, y, z) {
+nh3 = function(x, y, z) {
   molecule = new THREE.Object3D();
   var startPosition = new THREE.Vector3( 0, 0, 0 );
   molecule.add(atom(startPosition, "n"));
@@ -64,7 +64,7 @@ ammonia = function(x, y, z) {
   scene.add( molecule );
 }
 
-hydrogen = function(x, y, z) {
+h2 = function(x, y, z) {
   molecule = new THREE.Object3D();
   var startPosition = new THREE.Vector3( 0, 0, 0 );
   molecule.add(atom(startPosition, "h"));
@@ -74,7 +74,7 @@ hydrogen = function(x, y, z) {
   scene.add( molecule );
 }
 
-carbonMonoxide = function(x, y, z) {
+co = function(x, y, z) {
   molecule = new THREE.Object3D();
   var startPosition = new THREE.Vector3( 0, 0, 0 );
   molecule.add(atom(startPosition, "c"));
@@ -84,8 +84,8 @@ carbonMonoxide = function(x, y, z) {
   scene.add( molecule );
 }
 
-water(-150,40,0);
-methanum(-50,40,0);
-ammonia(50,40,0);
-hydrogen(130,40,0);
-carbonMonoxide(-90,40,80);
+h2o(-150,40,0);
+ch4(-50,40,0);
+nh3(50,40,0);
+h2(130,40,0);
+co(-90,40,80);
