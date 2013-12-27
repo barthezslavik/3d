@@ -15,13 +15,8 @@ function init() {
   var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
   camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
   scene.add(camera);
-  camera.position.set(0,150,400);
+  camera.position.set(0,0,400);
   camera.lookAt(scene.position);
-
-  if ($.cookie("camera_x")) {
-    camera.lookAt(new THREE.Vector3(0,0,0));
-    camera.position.set($.cookie("camera_x"), $.cookie("camera_y"), $.cookie("camera_z"));
-  }
 
   // RENDERER
   if ( Detector.webgl )
@@ -51,34 +46,17 @@ function init() {
   light.position.set(0,0,2100);
   scene.add(light);
 
-  // FLOOR
-  var floorTexture = new THREE.ImageUtils.loadTexture( 'images/checkerboard.jpg' );
-  floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
-  floorTexture.repeat.set( 10, 10 );
-  var floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide } );
-  var floorGeometry = new THREE.PlaneGeometry(1000, 1000, 10, 10);
-  var floor = new THREE.Mesh(floorGeometry, floorMaterial);
-  floor.position.y = -0.5;
-  floor.rotation.x = Math.PI / 2;
-  //scene.add(floor);
-
-  function update_camera(event) {
-    $.cookie("camera_x", camera.position.x);
-    $.cookie("camera_y", camera.position.y);
-    $.cookie("camera_z", camera.position.z);
-  }
-
-  document.addEventListener('mouseup', update_camera, false);
-  document.addEventListener('mousewheel', update_camera, false);
-
-  ////////////
-  // CUSTOM //
-  ////////////
-
 }
 
 function animate() {
   requestAnimationFrame( animate );
+  scene.children[0].position.z += 4;
+  scene.children[2].scale.x += 0.01;
+  scene.children[2].scale.y += 0.01;
+  scene.children[2].scale.z += 0.01;
+  scene.children[3].scale.x += 0.01;
+  scene.children[3].scale.y += 0.01;
+  scene.children[3].scale.z += 0.01;
   render();
   update();
 }
