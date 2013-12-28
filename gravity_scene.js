@@ -46,17 +46,42 @@ function init() {
   light.position.set(0,0,2100);
   scene.add(light);
 
+  //window.delta1 = 0
+  //window.delta2 = 0
+  //window.exp = 1.2
+  window.t = 0
 }
 
 function animate() {
-  requestAnimationFrame( animate );
-  scene.children[0].position.z += 4;
-  scene.children[2].scale.x += 0.01;
-  scene.children[2].scale.y += 0.01;
-  scene.children[2].scale.z += 0.01;
-  scene.children[3].scale.x += 0.01;
-  scene.children[3].scale.y += 0.01;
-  scene.children[3].scale.z += 0.01;
+  window.t += 1000000000
+  //setTimeout(function() { requestAnimationFrame(animate); }, 500);
+  requestAnimationFrame(animate);
+  m1 = 30
+  m2 = 10
+  x1 = scene.children[2].position.x;
+  x2 = scene.children[3].position.x;
+  r = x2-x1;
+  r = r*r
+  f = 6.6725e-11
+  a1 = f/m1
+  a2 = f/m2
+  s1 = (a1*t*a1*t)/2
+  s2 = (a2*t*a2*t)/2
+
+  //window.delta1 += 0.04
+  //window.delta2 += 0.00008
+  //window.exp += 0.00001
+  //scene.children[0].position.z += window.delta1;
+  if (scene.children[2].position.x < (scene.children[3].position.x-40)) {
+    scene.children[2].position.x += s1;
+    scene.children[3].position.x -= s2;
+  }
+  //scene.children[2].scale.x += window.delta2*exp;
+  //scene.children[2].scale.y += window.delta2*exp;
+  //scene.children[2].scale.z += window.delta2*exp;
+  //scene.children[3].scale.x += window.delta2*exp;
+  //scene.children[3].scale.y += window.delta2*exp;
+  //scene.children[3].scale.z += window.delta2*exp;
   render();
   update();
 }
