@@ -68,20 +68,25 @@ function animate() {
   s1 = (a1*t*a1*t)/2
   s2 = (a2*t*a2*t)/2
 
-  //window.delta1 += 0.04
-  //window.delta2 += 0.00008
+  window.delta1 += 0.04
+  window.delta2 += 0.00008
   //window.exp += 0.00001
-  //scene.children[0].position.z += window.delta1;
+
+  power = 0
+
   if (scene.children[2].position.x < (scene.children[3].position.x-40)) {
     scene.children[2].position.x += s1;
     scene.children[3].position.x -= s2;
+    power = (scene.children[2].position.x + scene.children[3].position.x)*-1;
   }
-  //scene.children[2].scale.x += window.delta2*exp;
-  //scene.children[2].scale.y += window.delta2*exp;
-  //scene.children[2].scale.z += window.delta2*exp;
-  //scene.children[3].scale.x += window.delta2*exp;
-  //scene.children[3].scale.y += window.delta2*exp;
-  //scene.children[3].scale.z += window.delta2*exp;
+
+  scene.children[0].position.z += 0.5*power*power;
+  scene.children[2].scale.x += 0.001*power*power;
+  scene.children[2].scale.y += 0.001*power*power;
+  scene.children[2].scale.z += 0.001*power*power;
+  scene.children[3].scale.x += 0.001*power*power;
+  scene.children[3].scale.y += 0.001*power*power;
+  scene.children[3].scale.z += 0.001*power*power;
   render();
   update();
 }
