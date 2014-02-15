@@ -45,12 +45,20 @@ function init() {
   var light = new THREE.PointLight(0xFFFFCC);
   light.position.set(0,0,2100);
   scene.add(light);
+  window.x = 0
 }
 
 function animate() {
   requestAnimationFrame(animate);
-  scene.children[2].position.x += 1;
+  window.x += 1
+  if (window.x > 359) { window.x = 0; }
 
+  angle = window.x*3.14/180;
+  scene.children[2].position.x += Math.cos(angle);
+  scene.children[2].position.z += Math.sin(angle);
+  scene.children[3].position.x += Math.cos(angle);
+  scene.children[3].position.z += Math.sin(angle);
+  render();
   render();
   update();
 }
